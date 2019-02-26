@@ -13,8 +13,11 @@ public class RecipeSearchAsyncTask extends AsyncTask<String, Void, String> {
 //      not used in this lab -> Void (aka null)
 // RESULT is the datatype that we send back on completion of this task
 //      a String containing a message to display for the user
-
-
+    private RecipeListener recipeListener;
+    public void setRecipeListener(RecipeListener newRecipeListener)
+    {
+        recipeListener = newRecipeListener;
+    }
     @Override
     protected String doInBackground(String... params) {
         // runs on a background thread, not blocking main
@@ -37,7 +40,7 @@ public class RecipeSearchAsyncTask extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         // happens after doInBackground, and runs on main thread
         super.onPostExecute(result);
-
+        recipeListener.onRecipeCallback(result);
     }
 
 
