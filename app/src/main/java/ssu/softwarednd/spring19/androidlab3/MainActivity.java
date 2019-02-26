@@ -20,6 +20,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // create a new task
+                RecipeSearchAsyncTask = new RecipeSearchAsyncTask();
+
+                // create a Listener!
+                task.setRecipeListener(new RecipeSearchAsyncTask.RecipeListener()) {
+                    @Override
+                    public void onRecipeCallback (String response){
+                        // show response on the screen
+                        responseText.setText(response);
+                    }
+                });
+                    }
+                }
+            }
+        });
 
     }
 }

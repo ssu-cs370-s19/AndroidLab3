@@ -13,6 +13,7 @@ public class RecipeSearchAsyncTask extends AsyncTask<String, Void, String> {
 //      not used in this lab -> Void (aka null)
 // RESULT is the datatype that we send back on completion of this task
 //      a String containing a message to display for the user
+    private RecipeListener RecipeListener;
 
 
     @Override
