@@ -15,11 +15,31 @@ public class MainActivity extends AppCompatActivity {
     private EditText searchEditText;
     private TextView responseText;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                RecipeSearchAsyncTask task = new RecipeSearchAsyncTask();
+
+                task.setRecipeListener(new RecipeSearchAsyncTask.RecipeListener(){
+                    @Override
+                    public void onRecipeCallback(String response){
+                        responseText.setText(response);
+                    }
+                });
+
+
+                String searchTerm = searchEditText.getText().toString();
+                task.execute(searchTerm);
+            }
+
+        });
 
     }
 }
