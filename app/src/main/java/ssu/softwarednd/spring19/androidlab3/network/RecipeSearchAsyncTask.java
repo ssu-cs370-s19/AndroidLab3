@@ -14,6 +14,7 @@ public class RecipeSearchAsyncTask extends AsyncTask<String, Void, String> {
 // RESULT is the datatype that we send back on completion of this task
 //      a String containing a message to display for the user
 
+    private RecipeListener recipeListener;
 
     @Override
     protected String doInBackground(String... params) {
@@ -37,10 +38,12 @@ public class RecipeSearchAsyncTask extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         // happens after doInBackground, and runs on main thread
         super.onPostExecute(result);
-
+        recipeListener.onRecipeCallback(result);
     }
 
-
+    public void setRecipeListener(RecipeListener recipeListener) {
+        this.recipeListener = recipeListener;
+    }
 
     public interface RecipeListener {
         void onRecipeCallback(String response);
