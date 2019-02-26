@@ -14,6 +14,12 @@ public class RecipeSearchAsyncTask extends AsyncTask<String, Void, String> {
 // RESULT is the datatype that we send back on completion of this task
 //      a String containing a message to display for the user
 
+    public void setRecipeListener(String recipeListener) {
+        RecipeListener = recipeListener;
+    }
+
+    private String RecipeListener;
+
 
     @Override
     protected String doInBackground(String... params) {
