@@ -38,12 +38,20 @@ public class RecipeSearchAsyncTask extends AsyncTask<String, Void, String> {
         // happens after doInBackground, and runs on main thread
         super.onPostExecute(result);
 
+        recipe.onRecipeCallback(result);
     }
 
 
 
     public interface RecipeListener {
         void onRecipeCallback(String response);
+    }
+
+
+    private RecipeListener recipe;
+
+    public void setRecipeListener(RecipeListener newRecipe){
+        recipe = newRecipe;
     }
 
 }
