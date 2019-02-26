@@ -19,7 +19,32 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        searchEditText = findViewById(R.id.response_text);
 
 
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //create a new task
+                RecipeSearchAsyncTask task = new RecipeSearchAsyncTask();
+
+                //create a Listener! (and add it to the task)
+                task.setMyRecipie(new RecipeSearchAsyncTask.RecipeListener() {
+                    @Override
+                    public void onRecipeCallback(String response) {
+                        //show response on the screen (in a text view)
+                        responseText.setText(response);
+
+
+                    }
+                });
+                //start the task
+                String searchTerm = searchEditText.getText().toString();
+                task.execute(searchTerm);
+
+            }
+
+
+        });
     }
 }
