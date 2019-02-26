@@ -15,6 +15,11 @@ public class RecipeSearchAsyncTask extends AsyncTask<String, Void, String> {
 //      a String containing a message to display for the user
 
 
+    public void setRecipeListener(RecipeListener recipeListener) {
+        this.recipeListener = recipeListener;
+    }
+
+    private RecipeListener recipeListener;
     @Override
     protected String doInBackground(String... params) {
         // runs on a background thread, not blocking main
@@ -37,6 +42,7 @@ public class RecipeSearchAsyncTask extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         // happens after doInBackground, and runs on main thread
         super.onPostExecute(result);
+        recipeListener.onRecipeCallback(result);
 
     }
 
