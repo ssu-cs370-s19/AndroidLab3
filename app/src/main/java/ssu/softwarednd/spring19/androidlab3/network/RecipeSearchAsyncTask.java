@@ -34,10 +34,10 @@ public class RecipeSearchAsyncTask extends AsyncTask<String, Void, String> {
     }
 
     @Override
-    protected void onPostExecute(String result) {
+    protected void onPostExecute(String result)  {
         // happens after doInBackground, and runs on main thread
         super.onPostExecute(result);
-
+        RecipeListener.onRecipeCallback(result);
     }
 
 
